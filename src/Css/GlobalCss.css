@@ -1,0 +1,673 @@
+/********************************
+Site Font and common css here
+*********************************/
+
+/* Google fonts here */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+body {
+   font-size: 17px;
+   font-family: 'Poppins', sans-serif;
+}
+
+/* Color Variable */
+:root {
+   --text-black: #111430;
+   --text-white: #ffffff;
+   --bg-color: #f2f2f4;
+   --btn-bg: #F63E7B;
+   --desc-color: #666666;
+}
+
+
+/****************************
+ Header css
+ ****************************/
+ .headerSection {
+   background: var(--bg-color);
+   color: var(--text-black);
+   padding: 5px 0px;
+   position: fixed;
+   width: 100%;
+   z-index: 11;
+}
+
+#NavBars {
+   margin-left: auto!important;
+   margin-right: 25px;
+}
+
+
+span.siteName {
+   font-size: 40px;
+   margin-left: 13px;
+   text-decoration: none;
+}
+
+a.active {
+   text-decoration: none;
+   color: var(--text-black);
+}
+
+.me-auto.navbar-nav {
+   margin: auto;
+}
+
+a.navMenu2{
+   color: var(--text-black);
+   text-decoration: none;
+   font-size: 35px;
+}
+
+a.navMenu{
+   color: var(--text-black);
+   margin: 0px 10px;
+   text-decoration: none;
+}
+
+.specialBtn {
+   color: var(--text-white);
+   border: none;
+   background: var(--btn-bg);
+   border-radius: 3px;
+   font-size: 18px;
+   padding: 7px 42px;
+}
+
+/************************
+Home slider css
+*************************/
+
+
+section.sectionWrapperBg {
+   background: var(--bg-color);
+}
+
+.homeSlider {
+   padding: 122px 0px;
+}
+
+h1.sliderName {
+   font-size: 50px;
+   font-weight: 700;
+   line-height: 65px;
+   margin-bottom: 20px;
+}
+
+.col-lg-5.sliderImg {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+button.carousel-control-prev,
+.carousel-control-next {
+   width: 3%;
+}
+
+p.sliderDetail {
+   font-size: 17px;
+   line-height: 25px;
+   color: var(--desc-color);
+   width: 80%;
+}
+
+/************************************
+ Featured servce section css here 
+ ************************************/
+.sectionWrapper {
+   padding: 80px 0px;
+}
+
+.sectionWrapper .sectionTitle {
+   text-align: center;
+   margin-bottom: 50px;
+}
+ h2.sectionName {
+   font-size: 40px;
+   font-weight: 700;
+   letter-spacing: 1px;
+}
+
+span.highLightPart {
+   color: var(--btn-bg);
+   font-weight: 800;
+}
+
+div#serviceCard {
+   border: none;
+   text-align: center;
+   border-radius: 5px;
+   box-shadow: -3px 5px 15px #f63e7b5c;
+
+}
+
+div#serviceCard:hover img.card-img-top.serviceIcon {
+   animation: rotation .5s linear;
+}
+
+@keyframes rotation {
+         from {
+            transform: rotate(0deg);
+         }
+         to {
+            transform: rotate(359deg);
+         }
+}
+
+img.card-img-top.serviceIcon {
+   width: 72px;
+   height: 72px;
+   margin: auto;
+   margin-top: 20px;
+}
+
+p.servicedesc.card-text {
+   margin-top: 0;
+   color: var(--desc-color);
+   margin-bottom: 1rem;
+   text-align: left;
+   margin-top: 15px;
+}
+
+.card-title.h5 {
+   font-size: 20px;
+   font-weight: 700;
+   color: var(--text-color);
+}
+
+span.price {
+   font-size: 25px;
+   font-weight: 700;
+   color: var(--btn-bg);
+}
+
+span.booking {
+   color: #000;
+   font-size: 20px;
+   font-weight: 500;
+   cursor: pointer;
+   background: #0defa6;
+   padding: 5px 20px;
+   border-radius: 29px;
+   visibility: hidden;
+
+}
+
+div#serviceCard:hover span.booking {
+   visibility: visible;
+}
+
+
+span.booking:hover {
+   color: var(--text-white);
+   transition: .3s;
+   background: var(--btn-bg);
+}
+
+
+/***********************
+ Features section css
+ **********************/
+
+ h3.heading {
+   font-size: 35px;
+   font-weight: 600;
+   line-height: 45px;
+   margin-bottom: 25px;
+}
+
+.card.featureCard {
+   background: transparent;
+   border: navajowhite;
+   padding: 0px 0px 0px 40px;
+}
+
+.clientAndServices {
+   display: flex;
+   align-items: center;
+   margin-top: 85px;
+   font-weight: 600;
+}
+
+.featuresBody.card-body {
+   padding: 0px;
+}
+
+.service {
+   margin-left: 50px;
+}
+
+
+/***********************
+Footer section css 
+***********************/
+
+section.footerSection {
+   background: var(--btn-bg);
+   padding: 40px 0px;
+}
+
+.footerCard {
+   background: transparent;
+   border: 0px;
+   display: flex;
+}
+
+span.location {
+   color: var(--text-white);
+   font-size: 15px;
+}
+
+img.footerIcon {
+   width: 31px;
+   display: inline;
+   height: 30px;
+   margin-right: 7px;
+}
+
+
+.footerCard2 {
+   display: block;
+   margin-top: -10px;
+}
+
+h2.footerHeaidng {
+   color: var(--text-white);
+   font-weight: 700;
+}
+
+
+/************************
+ Booking page css 
+ ************************/
+ .bppkingForm.card {
+   padding: 35px 20px 10px 20px;
+   border-radius: 10px;
+}
+
+#inputFiled {
+   width: 100%;
+   padding: 5px 10px;
+   margin: 10px 0px;
+   border-radius: 0px;
+   border: 1px solid #eee;
+   outline: none;
+   font-size: 20px;
+   color: var(--btn-bg);
+}
+
+
+/********************************
+Admin dashboard csss
+********************************/
+.dashBoardContentWrapper {
+   padding: 7% 1% 0% 17%;
+}
+
+.offcanvasMenuArea {
+   z-index: 10;
+   width: 15%;
+   position: fixed;
+   padding: 0px 10px 0px 15px;
+   background: white;
+   box-shadow: 1px 1px 6px #77767654;
+   height: 100vh;
+}
+
+.offcanvasMenuAreaMini {
+   z-index: 10;
+   width: 22%;
+   position: fixed;
+   padding: 0px 10px 0px 15px;
+   background: white;
+   box-shadow: 1px 1px 6px #77767654;
+   height: 100vh;
+}
+
+.wrap {
+   padding: 0% 1%;
+}
+
+.themeProfile {
+   margin-top: 60%;
+   margin-bottom: 30%;
+   align-items: center;
+   display: flex;
+   justify-content: space-between;
+}
+
+h4.adminName {
+   font-size: 18px;
+}
+
+button.profileBtn {
+   background: var(--btn-bg);
+   border: none;
+   color: var(--text-white);
+   padding: 3px 30px;
+   border-radius: 5px;
+   margin-top: 5px;
+}
+
+a#dashBoardNavMenu {
+   color: #444;
+   text-decoration: none;
+   text-align: left;
+}
+
+.dividerDiv {
+   height: 10px;
+}
+
+span.menuIcon {
+   color: #888;
+   width: 20px;
+}
+
+.headerSection {
+   z-index: 221;
+}
+
+/***********************
+Manage all services css 
+***********************/
+
+.contetnWrapper {
+   background: var(--text-white);
+   padding: 10px 0px;
+   font-size: 25px;
+   font-weight: 500;
+}
+
+
+.bottomBorder {
+   width: 90px;
+   height: 2px;
+   border-bottom: 3px solid #f63e7b;
+   margin-top: 5px;
+}
+
+.contentBody {
+   padding: 20px;
+   background: #f2f2f4;
+   margin: 15px 0px 0px 0px;
+}
+
+.contentData {
+   background: var(--text-white);
+   padding: 20px;
+   border-radius: 10px;
+}
+
+.contentHeader {
+   background: #f2f2f4;
+   padding: 12px 30px;
+   display: flex;
+   justify-content: space-between;
+   color: #747070;
+   border-radius: 15px;
+}
+
+
+.contetnColumn {
+   padding: 12px 30px;
+   display: flex;
+   justify-content: space-between;
+   color: var(--text-black);
+   border-radius: 15px;
+   margin-top: 15px;
+}
+
+.columnWrap {
+   text-align: center;
+   width: 100%;
+}
+
+span.columnName {
+   text-align: left;
+}
+
+.columData {
+   text-align: center;
+   width: 100%;
+}
+
+span.actionIconDel {
+   color: #f63e7b;
+   cursor: pointer;
+}
+
+span.actionIconDel:hover{
+   color: #d3054a;
+   transition: .3s;
+}
+
+span.actionIconEdt {
+   color: #12ebaf;
+   cursor: pointer;
+}
+
+span.actionIconEdt:hover{
+   color: #06bb89;
+   transition: .3s;
+}
+
+span.columnNameAction {
+   font-size: 22px;
+}
+
+button#toggle {
+   display: none;
+   position: absolute;
+   top: 13%;
+}
+
+
+
+/***************************************
+* Responsive css starts from here
+****************************************/
+
+@media only screen and (max-width: 1199px) {
+   .clientAndServices {
+      display: flex;
+      align-items: center;
+      margin-top: 30px;
+      font-weight: 600;
+  }
+}
+
+
+
+@media only screen and (max-width: 992px) {
+   
+div#NavBars {
+   margin-top: 25px;
+}
+
+div#NavBars a.navMenu {
+   margin: 5px 10px;
+}
+
+a.navMenu button.specialBtn {
+   margin-top: 10px;
+}
+
+
+.card.featureCard {
+   padding: 0px 0px 0px 20px;
+}
+
+h3.heading {
+   font-size: 25px;
+   line-height: 35px;
+   margin-bottom: 10px;
+}
+
+img.card-img-top {
+   height: 250px;
+}
+
+.clientAndServices {
+   margin-top: 0px;
+}
+
+h2.sectionName {
+   font-size: 30px;
+}
+
+p.servicedesc.card-text {
+   color: var(--desc-color);
+   text-align: left;
+   margin-top: 5px;
+   font-size: 15px;
+}
+
+section.footerSection {
+   background: var(--btn-bg);
+   padding: 40px 0px;
+}
+
+h2.footerHeaidng {
+   color: var(--text-white);
+   font-weight: 700;
+   font-size: 20px;
+}
+
+.offcanvasMenuArea {
+   display: none;
+}
+
+.dashBoardContentWrapper {
+   padding: 12% 1% 0% 2%;
+}
+
+
+.offcanvasMenuAreaMini {
+   width: 22%;
+
+}
+
+
+button#toggle {
+   display: block;
+}
+
+}
+
+@media only screen and (max-width: 850px) {
+
+   .offcanvasMenuAreaMini {
+      width: 25%;
+  }
+  
+}
+
+@media only screen and (max-width: 768px) {
+
+.offcanvasMenuAreaMini {
+      width: 25%;
+}
+span.columnNameAction {
+   font-size: 15px;
+}
+
+
+.dashBoardContentWrapper {
+   padding: 20% 1% 0% 2%;
+}
+
+.nameandBtn {
+   margin-top: 10px;
+}
+  
+.themeProfile {
+     margin-top: 60%;
+     margin-bottom: 20%;
+     display: block;
+     text-align: center;
+}
+   
+.offCanvasMenus {
+      text-align: center;
+   }
+}
+
+
+@media only screen and (max-width: 620px) {
+
+   .offcanvasMenuAreaMini {
+         width: 35%;
+   }
+
+   
+   .dashBoardContentWrapper {
+      padding: 22% 1% 0% 2%;
+  }
+
+}
+
+@media only screen and (max-width: 425px) {
+   .wrap {
+      padding: 0 3%;
+  }
+   .contetnColumn {
+      font-size: 10px;
+  }
+
+  .contentHeader {
+   font-size: 10px;
+}
+
+.offcanvasMenuAreaMini {
+   width: 50%;
+}
+
+.contentBody {
+   padding: 0px;
+   background: transparent;
+}
+
+span.columnNameAction {
+   font-size: 15px;
+}
+
+.contentData {
+   padding: 2px;
+}
+
+h1.sliderName {
+   font-size: 32px;
+   line-height: 50px;
+}
+
+.card.featureCard {
+   padding: 15px 0 0 0px;
+}
+
+h3.heading {
+   font-size: 30px;
+}
+
+h2.sectionName {
+   font-size: 25px;
+}
+
+}
+
+
+
+@media only screen and (max-width: 320px) {
+  
+   h3.heading {
+      font-size: 25px;
+   }
+
+   
+h1.sliderName {
+   font-size: 30px;
+   line-height: 40px;
+}
+
+}
