@@ -8,11 +8,14 @@ import Pannel021 from './Pages/Admin_Pannel&&021/Pannel021';
 import Booking from './Pages/BookingPage/Booking';
 import Home from './Pages/HomePage/Home';
 import Services from './Pages/ServicesPage/Services';
-
+import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
+import AuthProvider from './Context/AuthProvider';
+import Account from './Pages/Accounts/Account';
 
 function App() {
   return (
     <div className="App">
+      <AuthProvider>
       <BrowserRouter>
        <Switch>
          <Route exact path="/">
@@ -24,9 +27,9 @@ function App() {
          <Route exact path="/services">
            <Services />
          </Route>
-         <Route exact path="/bookingService/:serviceId">
+         <PrivateRoute exact path="/bookingService/:serviceId">
            <Booking />
-         </Route>
+         </PrivateRoute>
          <Route exact path="/Admin_Pannel&&021/Pannel&&021">
            <Pannel021 />
          </Route>
@@ -42,8 +45,16 @@ function App() {
          <Route exact path="/Admin_Pannel&&021/Pannel&&021/allServices">
            <AllServices />
          </Route>
+         <Route exact path="/login">
+           <Account />
+         </Route>
+         <Route exact path="/signup">
+           <Account />
+         </Route>
        </Switch>
       </BrowserRouter>
+      </AuthProvider>
+
     </div>
   );
 }

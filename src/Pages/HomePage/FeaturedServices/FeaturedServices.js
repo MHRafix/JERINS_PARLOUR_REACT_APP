@@ -12,12 +12,13 @@ const FeaturedServices = () => {
     return (
                     <section>
                        <div className="sectionWrapper">
-                             { loading ? <div className="loader text-center m-auto">
-                                <Spinner animation="border" variant="danger" />
-                            </div> : <Container>
+                         <Container>
                             <div className="sectionTitle">
                                 <h2 className="sectionName">Featured <span className="highLightPart">Services</span></h2>
                             </div> 
+                            { loading && <div className="loader text-center m-auto">
+                                <Spinner animation="border" variant="danger" />
+                            </div> }
                             <Row xs={1} md={3} className="g-4">
                                 {
                                     datas.map(data => <SingleService key={data._id} data={data} />)
@@ -28,7 +29,7 @@ const FeaturedServices = () => {
                                     <Button className="specialBtn">Explore More</Button>
                                 </Link>
                            </div>
-                           </Container>}
+                           </Container>
                         </div>
                     </section>
 

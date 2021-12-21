@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import Logo from '../../../logo.png';
 import Button from '@restart/ui/esm/Button';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import useAuth from '../../../CustomHooks/useAuth';
 
 const Header = () => {
+
+    // Import useAuth from customhooks
+    const { user, handleSignOut } = useAuth();
+
+    // Take some state for dynamic
+    const [ toggle, setToggle ] = useState(false);
 
     return (
         <section className="siteHeader">
@@ -25,13 +32,30 @@ const Header = () => {
                            
                         </Nav>
 
-                        <NavLink className="navMenu" to="/login">
+                         {user.email ?  <img onClick={ () => setToggle(true)} className="userPhoto" src={user.photoURL} alt="userPhoto" /> :<NavLink className="navMenu" to="/login">
                             <Button className="specialBtn">Login</Button>
-                        </NavLink>
+                        </NavLink>}
                    
                         </Navbar.Collapse>
                      </Navbar>
                     </Container>
+
+                    {toggle ? <div className="userDashBoard">
+                        <span className="cross" onClick={() => setToggle(false)} >&times;</span> <br />
+                        <img className="profilePic" src={user.photoURL} alt="userPhoto" />
+                        <h3 className="userName">{user.displayName}</h3>
+                        <hr />
+
+                         <div className="links">
+                            <Link className="userNavLink" to="/MyBookings"><i className="navIcon fas fa-briefcase"></i> &nbsp;My Services</Link> <br />
+                            <Link className="userNavLink" to="/feedBack"><i className="navIcon far fa-comment-dots"></i> &nbsp;Give Review</Link> <br />
+                            <Link className="userNavLink" to="/feedBack"><i className="navIcon far fa-handshake"></i> &nbsp;Let's Meet</Link> <br />
+                            <span onClick={() => {
+                                setToggle(false);
+                                handleSignOut();
+                                }} className="logout"><i className="fas fa-sign-out-alt"></i> Log Out</span>
+                        </div>
+                    </div> : <></>}
                 </div>
             </header>
         </section>

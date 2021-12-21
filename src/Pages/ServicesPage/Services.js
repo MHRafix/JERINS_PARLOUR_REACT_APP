@@ -17,18 +17,19 @@ const Services = () => {
             <Header />
             <section>
                        <div className="sectionWrapper">
-                            { loading ? <div className="loader text-center m-auto">
-                                <Spinner animation="border" variant="danger" />
-                            </div> : <Container>
+                          <Container>
                             <div className="sectionTitle">
                                 <h2 className="sectionName mt-5">All <span className="highLightPart">Services</span></h2>
                             </div> 
+                            { loading && <div className="loader text-center m-auto">
+                                <Spinner animation="border" variant="danger" />
+                            </div>}
                              <Row xs={1} md={3} className="g-4">
                                 {
                                     datas.map(data => <SingleService key={data._id} data={data} />)
                                 }
                             </Row>
-                           </Container>}
+                           </Container>
                         </div>
                     </section>
                     {/* Footer Import Here */}

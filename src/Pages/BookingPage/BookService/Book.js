@@ -3,11 +3,12 @@ import { Alert, Card, CardImg, Col, Container, Row, Spinner  } from 'react-boots
 import { useForm } from "react-hook-form";
 import { useParams } from 'react-router';
 import usePost from '../../../CustomHooks/usePost';
-
+import useAuth from '../../../CustomHooks/useAuth';
 
 const Book = () => {
 
-
+    // Import useAuth from customHooks
+    const { user } = useAuth();
     // Take the service uniqueId using useParams
     const { serviceId } = useParams();
 
@@ -39,8 +40,8 @@ const Book = () => {
                           <h3 className="heading text-center fw-700">Give <span className="highLightPart">Your Info</span></h3>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             {/* User or customer info save to the db */}
-                            <input type="text" id="inputFiled" {...register("name", { required: true })} placeholder="Enter your full name" value={"MH Rafiz"} />
-                            <input type="email" id="inputFiled" {...register("email", { required: true })} placeholder="Enter your email" value="webdevrafix@gmail.com" /> 
+                            <input type="text" id="inputFiled" {...register("name", { required: true })} placeholder="Enter your full name" value={user.displayName} />
+                            <input type="email" id="inputFiled" {...register("email", { required: true })} placeholder="Enter your email" value={user.email} /> 
                             <input tpye="tel" id="inputFiled" {...register("phoneNumber", { required: true })} min="11" max="15" placeholder="Enter your phone number" />
                             <input type="number" id="inputFiled" {...register("age", { required: true })} min="16" max="50" placeholder="Enter your  age" />
                             <input type="text" id="inputFiled" {...register("comingTime", { required: true })} placeholder="Enter your coming time" /> 
