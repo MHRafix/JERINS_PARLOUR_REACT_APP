@@ -292,7 +292,6 @@ h2.footerHeaidng {
    margin: 10px 0px;
    border-radius: 0px;
    border: 1px solid #eee;
-   outline: none;
    font-size: 20px;
    color: var(--btn-bg);
 }
@@ -301,6 +300,11 @@ h2.footerHeaidng {
 /********************************
 Admin dashboard csss
 ********************************/
+
+.userDashBoardContentWrapper {
+   padding: 130px 0px;
+}
+
 .dashBoardContentWrapper {
    padding: 7% 1% 0% 17%;
 }

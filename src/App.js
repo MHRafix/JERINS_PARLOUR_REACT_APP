@@ -11,6 +11,7 @@ import Services from './Pages/ServicesPage/Services';
 import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
 import AuthProvider from './Context/AuthProvider';
 import Account from './Pages/Accounts/Account';
+import MyServices from './Pages/UserDashboard/MyServices/MyServices';
 
 function App() {
   return (
@@ -44,6 +45,9 @@ function App() {
          </Route>
          <Route exact path="/Admin_Pannel&&021/Pannel&&021/allServices">
            <AllServices />
+         </Route>
+         <Route exact path="/MyBookedServices">
+           <MyServices />
          </Route>
          <Route exact path="/login">
            <Account />

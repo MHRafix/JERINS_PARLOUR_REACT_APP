@@ -26,7 +26,7 @@ const SingleBooking = (props) => {
             <div className="columData"><span className="columnName">{ phoneNumber }</span></div>
             <div className="columData"><span className="columnName">{ serviceName?.name }</span></div>
             <div className="columData"><span className="columnNameAction"><span onClick={ () => props.handleDelete(_id, "bookedServices") } className="fas fa-trash actionIconDel"></span> || <span className="fas fa-edit actionIconEdt"></span></span></div>
-      </div>
+        </div>
     );
 };
 

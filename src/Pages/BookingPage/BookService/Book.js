@@ -1,25 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Alert, Card, CardImg, Col, Container, Row, Spinner  } from 'react-bootstrap';
-import { useForm } from "react-hook-form";
 import { useParams } from 'react-router';
 import usePost from '../../../CustomHooks/usePost';
 import useAuth from '../../../CustomHooks/useAuth';
+import useDataFetching from '../../../CustomHooks/useDataFetching';
 
 const Book = () => {
+    
+    // Take some state for storing data
+    const [ cmname, setCmname ] = useState('');
+    const [ phoneNumber, setPhoneNumber ] = useState('');
+    const [ age, setAge ] = useState('');
+    const [ comingTime, setComingTime ] = useState('');
 
     // Import useAuth from customHooks
     const { user } = useAuth();
     // Take the service uniqueId using useParams
     const { serviceId } = useParams();
+    
 
-    // Use react hook form for book service
-    const { register, handleSubmit, reset } = useForm();
+    // Find out the selected package here 
+    const [ loading, datas ] = useDataFetching("services");
+    
+    let selectedService;
+
+    if(datas){
+      const thisService = datas.find(data => data._id === serviceId);
+      if(thisService){
+        selectedService = thisService;
+      }
+    }
+
     // Post the booking service data using reuseable function 
-    const [ isSend, open, setOpen, onSubmit ] = usePost("bookings", reset);
+    const [ isSend, open, setOpen, handlePost ] = usePost();
 
     const handleClose = () => {
       setOpen(false);
     }
+    
+    // Booking data
+    const bookingData = {
+      serviceName: selectedService?.name, 
+      servicePrice: selectedService?.price,
+      customerName: cmname,
+      customerEmail: user.email,
+      customerPhoneNumber: phoneNumber,
+      customerAge: age,
+      appointMentTime: comingTime,
+      status: "Pendding"
+
+
+    }
+
+
+
+
     // Put the banner url into a varible for better perfomance 
     const bannerImg = "https://i.ibb.co/LrVtdwd/1-Best-Salon-Apps-for-Salon-Booking-Online-banner.jpg";
 
@@ -38,17 +73,12 @@ const Book = () => {
                       <Card className="bppkingForm">
                         { open && <Alert variant="danger" onClick={handleClose} dismissible>Service booked successfully!</Alert> }
                           <h3 className="heading text-center fw-700">Give <span className="highLightPart">Your Info</span></h3>
-                        <form onSubmit={handleSubmit(onSubmit)}>
+                        <form onSubmit={() => handlePost(bookingData, "bookings")}>
                             {/* User or customer info save to the db */}
-                            <input type="text" id="inputFiled" {...register("name", { required: true })} placeholder="Enter your full name" value={user.displayName} />
-                            <input type="email" id="inputFiled" {...register("email", { required: true })} placeholder="Enter your email" value={user.email} /> 
-                            <input tpye="tel" id="inputFiled" {...register("phoneNumber", { required: true })} min="11" max="15" placeholder="Enter your phone number" />
-                            <input type="number" id="inputFiled" {...register("age", { required: true })} min="16" max="50" placeholder="Enter your  age" />
-                            <input type="text" id="inputFiled" {...register("comingTime", { required: true })} placeholder="Enter your coming time" /> 
-
-                            {/* Save to the db choosen service info */}
-                            <input type="hidden" id="inputFiled" {...register("bookingId", { required: true })} value={ serviceId } /> 
-
+                            <input type="text" name="customerName"  onChange={(e) => setCmname(e.target.value)} id="inputFiled" placeholder="Enter your full name" required />
+                            <input tpye="number" name="customerPhoneNumber"  onChange={(e) => setPhoneNumber(e.target.value)} id="inputFiled" placeholder="Enter your phone number" required />
+                            <input type="number" name="customerAge"  onChange={(e) => setAge(e.target.value)} min="15" max="50" id="inputFiled" placeholder="Enter your  age" required />
+                            <input type="date" name="comingTime"  onChange={(e) => setComingTime(e.target.value)} id="inputFiled" placeholder="Enter your coming time" required /> 
                             {/* Submit Button   */}
                             <input id="inputFiled" className="specialBtn text-white" type="submit" value="Confirm Booking" />
                         </form>

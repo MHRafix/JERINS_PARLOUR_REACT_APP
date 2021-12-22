@@ -1,19 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Feature = () => {
+    // AOS animation
+    useEffect(() => {
+        AOS.init({
+            offset: 100,
+            duration: 1300,
+            easing: 'ease',
+        });
+    });
+
     return (
         <section className="sectionWrapperBg">
             <div className="sectionWrapper">
               <Container>
                 <Row xs={1} md={2} className="gx-2">
                     <Col>
-                    <Card className="cardImage">
+                    <Card className="cardImage" data-aos="fade-left">
                         <Card.Img variant="top" src="https://i.ibb.co/1MQb5bB/feature-Banner.png" />
                     </Card>
                     </Col>
                     <Col>
-                    <Card className="featureCard">
+                    <Card className="featureCard" data-aos="fade-right">
                         <Card.Body className="featuresBody">
                             <Card.Title><h3 className="heading">Let us handle your <br /> screen <span className="highLightPart">Professionally</span>.</h3></Card.Title>
                             <Card.Text className="servicedesc">

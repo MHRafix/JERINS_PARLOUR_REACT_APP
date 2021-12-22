@@ -47,8 +47,8 @@ const Header = () => {
                         <hr />
 
                          <div className="links">
-                            <Link className="userNavLink" to="/MyBookings"><i className="navIcon fas fa-briefcase"></i> &nbsp;My Services</Link> <br />
-                            <Link className="userNavLink" to="/feedBack"><i className="navIcon far fa-comment-dots"></i> &nbsp;Give Review</Link> <br />
+                            <Link className="userNavLink" to="/MyBookedServices"><i className="navIcon fas fa-briefcase"></i> &nbsp;My Services</Link> <br />
+                            <Link className="userNavLink" to="/feedBack"><i className="navIcon far fa-comment-dots"></i> &nbsp;Leave Review</Link> <br />
                             <Link className="userNavLink" to="/feedBack"><i className="navIcon far fa-handshake"></i> &nbsp;Let's Meet</Link> <br />
                             <span onClick={() => {
                                 setToggle(false);
