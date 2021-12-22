@@ -46,9 +46,9 @@ function App() {
          <Route exact path="/Admin_Pannel&&021/Pannel&&021/allServices">
            <AllServices />
          </Route>
-         <Route exact path="/MyBookedServices">
+         <PrivateRoute exact path="/MyBookedServices">
            <MyServices />
-         </Route>
+         </PrivateRoute>
          <Route exact path="/login">
            <Account />
          </Route>

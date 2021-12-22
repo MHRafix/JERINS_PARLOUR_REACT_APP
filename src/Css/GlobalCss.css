@@ -641,7 +641,7 @@ span.logout {
    cursor: pointer;
 }
 
-a.userNavLink {
+.userNavLink {
    margin: -5px 0px;
    display: block;
    background: #eee;
@@ -649,9 +649,10 @@ a.userNavLink {
    border-radius: 5px;
    color: #000;
    text-decoration: none;
+   cursor: pointer;
 }
 
-a.userNavLink:hover {
+.userNavLink:hover {
    background: #cccccc;
    transition: .3s;
 }
@@ -663,10 +664,27 @@ span.cross {
    cursor: pointer;
 }
 
-a.userNavLink i.navIcon {
+form.reviewDorm {
+   padding: 20px;
+}
+
+.userNavLink i.navIcon {
    color: #f63e7b;
 }
 
+
+span.columnName.status {
+   background: black;
+   color: #00ff95;
+   padding: 2px 12px;
+   border-radius: 5px;
+}
+span.columnName.payment {
+   background: #00ce78;
+   padding: 2px 12px;
+   border-radius: 5px;
+   color: white;
+}
 /***************************************
 * Responsive css starts from here
 ****************************************/
