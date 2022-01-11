@@ -12,6 +12,7 @@ import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
 import AuthProvider from './Context/AuthProvider';
 import Account from './Pages/Accounts/Account';
 import MyServices from './Pages/UserDashboard/MyServices/MyServices';
+import Payment from './Pages/UserDashboard/Payment/Payment';
 
 function App() {
   return (
@@ -48,6 +49,9 @@ function App() {
          </Route>
          <PrivateRoute exact path="/MyBookedServices">
            <MyServices />
+         </PrivateRoute>
+         <PrivateRoute exact path="/payment">
+           <Payment />
          </PrivateRoute>
          <Route exact path="/login">
            <Account />

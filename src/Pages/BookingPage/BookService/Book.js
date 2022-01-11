@@ -47,7 +47,8 @@ const Book = () => {
       customerPhoneNumber: phoneNumber,
       customerAge: age,
       appointMentTime: comingTime,
-      status: "Pendding"
+      status: "Pendding",
+      paymentStatus: false
 
 
     }

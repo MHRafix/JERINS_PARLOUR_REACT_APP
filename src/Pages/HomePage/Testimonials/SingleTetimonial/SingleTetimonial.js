@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import { Card, Col } from 'react-bootstrap';
+import Rating from 'react-rating';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-const SingleTetimonial = () => {
-
+const SingleTetimonial = ({feedback}) => {
+      console.log(feedback);
         // Let's destructuring the single service data from the object
-        // const { _id, name, price, serviceTcon, description } = props.service;
-
+        const { userName, userPhoto, ratting, review } = feedback;
+ 
             // AOS animation
             useEffect(() => {
                 AOS.init({
@@ -17,17 +18,26 @@ const SingleTetimonial = () => {
                 });
             });
 
+
     return (
-        <Col>
+
+           <Col>
             <Card id="serviceCard" data-aos="flip-up">
-            {/* <Card.Img className="serviceIcon" variant="top" src={ serviceTcon } /> */}
             <Card.Body>
-            <Card.Title> frggdgfhgfhf </Card.Title>
-            <span className="price">$ price </span>
-            <Card.Text className="servicedesc"> description.slice(0, 120) </Card.Text>
+                <img className="userPicture" src={userPhoto} alt="userImage" />
+            <Card.Title>{ userName }</Card.Title>
+            <span className="rattings">
+            <Rating readonly
+                initialRating={ratting}
+                emptySymbol="far fa-star"
+                fullSymbol="fas fa-star"
+            />
+             </span>
+            <Card.Text className="servicedesc">{ review.slice(0, 50) }....</Card.Text>
             </Card.Body>
         </Card>
        </Col>
+      
     );
 };
 

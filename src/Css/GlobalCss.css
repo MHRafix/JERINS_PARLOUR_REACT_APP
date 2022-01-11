@@ -134,12 +134,41 @@ span.highLightPart {
    font-weight: 800;
 }
 
-div#serviceCard {
+button.payBtn {
+   background: #f63e7b;
    border: none;
+   padding: 2px 15px;
+   border-radius: 5px;
+   color: white;
+}
+
+button.payBtn:hover{
+   background: #a1093c;
+   transition: .3s;
+}
+
+
+
+.Paymentwrapper {
+   margin: 40px 0px;
+}
+
+
+.contetnColumn {
+   display: flex;
+   align-items: center;
+}
+
+div#serviceCard {
    text-align: center;
+   border: none;
    border-radius: 5px;
    box-shadow: -3px 5px 15px #f63e7b5c;
+   margin: 30px 10px;
+}
 
+span.rattings {
+   color: #f6417c;
 }
 
 div#serviceCard:hover img.card-img-top.serviceIcon {
@@ -685,6 +714,21 @@ span.columnName.payment {
    border-radius: 5px;
    color: white;
 }
+
+img.userPicture {
+   position: absolute;
+   top: -30px;
+   border-radius: 100px;
+   width: 60px;
+   left: 10px;
+   height: 60px;
+}
+
+.card-title.h5 {
+   margin-top: 30px;
+   font-size: 20px;
+}
+
 /***************************************
 * Responsive css starts from here
 ****************************************/

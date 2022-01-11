@@ -19,12 +19,12 @@ const Feature = () => {
               <Container>
                 <Row xs={1} md={2} className="gx-2">
                     <Col>
-                    <Card className="cardImage" data-aos="fade-left">
+                    <Card className="cardImage">
                         <Card.Img variant="top" src="https://i.ibb.co/1MQb5bB/feature-Banner.png" />
                     </Card>
                     </Col>
                     <Col>
-                    <Card className="featureCard" data-aos="fade-right">
+                    <Card className="featureCard">
                         <Card.Body className="featuresBody">
                             <Card.Title><h3 className="heading">Let us handle your <br /> screen <span className="highLightPart">Professionally</span>.</h3></Card.Title>
                             <Card.Text className="servicedesc">
