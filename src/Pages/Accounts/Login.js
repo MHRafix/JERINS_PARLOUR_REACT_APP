@@ -5,10 +5,11 @@ import LOGO from '../../logo.png';
 import GOOGLELOGO from '../../google.png';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Spinner } from 'react-bootstrap';
 
 const Login = () => {
 
-    const { user, handleGoogleSignin } = useAuth();
+    const { user, loading, handleGoogleSignin } = useAuth();
 
     const location = useLocation();
     const history = useHistory();
@@ -45,9 +46,8 @@ const Login = () => {
                               <div className="loginForm" data-aos="fade">
                                   <img className="loginLogo" src={LOGO} alt="siteLogo" />
                                   <h3 className="title">Login With</h3>
-                                  <div onClick={ googleSignin } className="apiOption"><img className="googleSLogo" src={GOOGLELOGO} alt="googleLogo" />
-                                  <span className="apiName">Continue With Google</span></div> <br />
-                                  <span className="anotherWay">You have no account ? <Link to="/signup">Create account</Link></span>
+                                  {loading ? <Spinner animation="border" variant="danger" /> : <div onClick={ googleSignin } className="apiOption"><img className="googleSLogo" src={GOOGLELOGO} alt="googleLogo" />
+                                  <span className="apiName">Continue With Google</span></div>} <br />
                                 </div>
                             </div>
                         </div>

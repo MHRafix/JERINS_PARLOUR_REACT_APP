@@ -9,7 +9,7 @@ const Services = () => {
 
 
     // Import useDataFetching Sate form custom hooks
-    const [ loading, datas ] = useDataFetching("services");
+    const { loading, datas } = useDataFetching("services");
 
     return (
         <section className="pageWrapper">

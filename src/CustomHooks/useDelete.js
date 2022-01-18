@@ -1,14 +1,16 @@
 import { useState } from "react";
+import useDataFetching from "./useDataFetching";
 
-const useDelete = () => {
-    
-
+const useDelete = (location) => {
     
     // Use state for open success modal and close
     const [ successModal, setSuccessModal ] = useState(false);
 
-     // Handle delete booked package with confirmation window alert 
-     const handleDelete = (id, location) => {
+    // Import all service state from useDataFetching hook
+    let { datas } = useDataFetching("services");
+     
+    // Handle delete booked package with confirmation window alert 
+     const handleDelete = (id) => {
         const procced = window.confirm('Are you sure ?');
    
         if(procced){
@@ -19,11 +21,12 @@ const useDelete = () => {
            .then(res => res.json())
            .then(data => {
                if(data.deletedCount > 0){
-                
-                // Set successModal true
-                setSuccessModal(true);
-
-                
+                   const rest = datas.filter(data => data._id !== id);
+                   console.log(rest);
+                   datas = rest;
+                   console.log(datas);
+                   // Set successModal true
+                   setSuccessModal(true);
            }
         })
         }

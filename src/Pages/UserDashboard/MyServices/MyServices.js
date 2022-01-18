@@ -1,28 +1,28 @@
 import React from 'react';
-import { Container, Spinner } from 'react-bootstrap';
+import { Alert, Container, Spinner } from 'react-bootstrap';
 import useDataFetching from '../../../CustomHooks/useDataFetching';
 import Footer from '../../SharedComponents/Footer/Footer';
 import Header from '../../SharedComponents/Header/Header';
 import SingleService from './SingleService';
 import useAuth from '../../../CustomHooks/useAuth';
+import useDelete from '../../../CustomHooks/useDelete';
 
 const MyServices = () => {
-
     // Import useAuth from custom hooks
     const { user } = useAuth();
+
     // Import useDataFetching Sate form custom hooks
-    const [ loading, datas ] = useDataFetching("bookedServices");
+    const dataURL = `bookedServices/${user.email}`;
+    const { loading, datas } = useDataFetching(dataURL);
 
-    // Findout my bookd services
-    let myServices;
-    if(datas){
-      const myService = datas.filter(data => data.customerEmail === user.email );
-      if(myService){
-        myServices = myService;
-      }
-    }
+    // Handle delete booking here
+    const { successModal, handleDelete, setSuccessModal } = useDelete(dataURL);
 
 
+  // Close alert function here
+  const handleClose = () => {
+        setSuccessModal(false);
+  }
     return (
         <section className="pageWrapper">
             <div className="pageBody">
@@ -35,9 +35,9 @@ const MyServices = () => {
                     <div className="bottomBorder"></div>
                     </div>
 
-            {/* {successModal && <Alert variant="danger" onClick={handleClose} dismissible>
-               Booking Successfully Deleted!
-             </Alert>} */}
+            {successModal && <Alert variant="danger" onClick={handleClose}>
+               Booked Service Successfully Deleted!
+             </Alert>}
                <div className="contentBody">
                  <div className="contentData">
                    <div className="contentHeader">
@@ -50,10 +50,10 @@ const MyServices = () => {
                    </div>
 
                    {loading && <div className="loader text-center m-auto">
-              <Spinner animation="border" variant="danger" />
-          </div>}
+                     <br /> <Spinner animation="border" variant="danger" />
+                  </div>}
      
-                                { myServices?.map( service => <SingleService key={ service._id } data={ service } />) }
+                                { !datas.length && !loading ? <h3 className='text-center text-danger mt-5'>No Booked Services Here...!😄</h3> : datas.map( service => <SingleService key={ service._id } data={ service } handleDelete={handleDelete} />) }
 
                              </div>
                            </div>

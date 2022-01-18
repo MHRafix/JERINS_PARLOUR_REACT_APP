@@ -9,10 +9,10 @@ const AllServices = () => {
 
 
     // Import all service state from useDataFetching hook
-    const [ loading, datas ] = useDataFetching("services");
+    const { loading, datas } = useDataFetching("services");
 
     // Handle delete booking here
-    const { successModal, handleDelete, setSuccessModal } = useDelete();
+    const { successModal, handleDelete, setSuccessModal } = useDelete( "services");
 
     // Handle Close success modal autometically after 3 seconds
     const handleClose = () => {
@@ -42,10 +42,10 @@ const AllServices = () => {
                        </div>    
                       
                       {loading && <div className="loader text-center m-auto">
-                  <Spinner animation="border" variant="danger" />
-              </div>}
+                         <br /> <Spinner animation="border" variant="danger" />
+                    </div>}
          
-                        { datas.map( data => <SingleService key={data._id} data={data} handleDelete={ handleDelete }/>) }
+                        { !datas.length && !loading ? <h3 className='text-center text-danger mt-5'>No Services Available...!😄</h3> : datas.map( data => <SingleService key={data._id} data={data} handleDelete={ handleDelete }/>) }
 
                      </div>
                    </div>

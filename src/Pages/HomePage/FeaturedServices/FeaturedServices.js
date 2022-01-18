@@ -7,7 +7,7 @@ import SingleService from './SingleService/SingleService';
 
 const FeaturedServices = () => {
 
-    const [ loading, datas ] = useDataFetching("featuredServices");
+    const { loading, datas } = useDataFetching("featuredServices");
 
     return (
                     <section>

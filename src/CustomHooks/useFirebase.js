@@ -8,6 +8,7 @@ const useFirebase = () => {
     
     // Take a state for storing the user in the state
     const [user, setUser] = useState({});
+    const [loading, setLoading] = useState(false);
 
     // Take auth provider
     const auth = getAuth();
@@ -17,6 +18,7 @@ const useFirebase = () => {
 
     // Handle google signin using firebase api
     const handleGoogleSignin = () => {
+          setLoading(true);
           return signInWithPopup(auth, googleProvider);
     }
 
@@ -25,6 +27,7 @@ const useFirebase = () => {
             signOut(auth)
             .then(() => {
                 setUser({});
+                setLoading(false);
             })
         }
 
@@ -40,7 +43,8 @@ const useFirebase = () => {
     return {
         handleGoogleSignin,
         handleSignOut,
-        user
+        user,
+        loading
         
     }
 };

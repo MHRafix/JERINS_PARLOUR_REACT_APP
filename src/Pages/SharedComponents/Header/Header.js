@@ -28,7 +28,7 @@ const Header = () => {
     
 
     // Post the booking service data using reuseable function 
-    const [ isSend, open, setOpen, handlePost ] = usePost();
+    const { isSend, open, setOpen, handlePost } = usePost();
 
     return (
         <section className="siteHeader">
@@ -44,9 +44,6 @@ const Header = () => {
                             <NavLink className="navMenu" to="/home">Home</NavLink>
                             <NavLink className="navMenu" to="/services">Services</NavLink>
                             <NavLink className="navMenu" to="/about">About Us</NavLink>
-                            <NavLink className="navMenu" to="/faq">FAQ</NavLink>
-                            <NavLink className="navMenu" to="/contact">Contact Us</NavLink>
-                           
                         </Nav>
 
                          {user.email ?  <img onClick={ () => setToggle(true)} className="userPhoto" src={user.photoURL} alt="userPhoto" /> :<NavLink className="navMenu" to="/login">
@@ -66,7 +63,6 @@ const Header = () => {
                          <div className="links">
                             <Link className="userNavLink" to="/MyBookedServices"><i className="navIcon fas fa-briefcase"></i> &nbsp;My Services</Link> <br />
                             <span onClick={ () => setBlock(true)} className="userNavLink"><i className="navIcon far fa-comment-dots"></i> &nbsp;Leave Review</span> <br />
-                            <Link className="userNavLink" to="/feedBack"><i className="navIcon far fa-handshake"></i> &nbsp;Let's Meet</Link> <br />
                             <span onClick={() => {
                                 setToggle(false);
                                 handleSignOut();

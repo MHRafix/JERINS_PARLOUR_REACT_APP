@@ -13,11 +13,25 @@ import AuthProvider from './Context/AuthProvider';
 import Account from './Pages/Accounts/Account';
 import MyServices from './Pages/UserDashboard/MyServices/MyServices';
 import Payment from './Pages/UserDashboard/Payment/Payment';
+import { Spinner } from 'react-bootstrap';
+import { useState } from 'react';
 
 function App() {
+
+  // Take a state for displaying initial spinner
+  const [ initialLoader, setInitialLoader ] = useState(true);
+  
+  // Declare a timeOut function
+  const timeOut = () => {
+    setInitialLoader(false);
+  }
+  // Initialize timeOut function here
+  setTimeout(timeOut, 2000);
+
   return (
     <div className="App">
-      <AuthProvider>
+      { initialLoader ? <div className="text-center" style={{width: "100%", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center"}}><Spinner animation="border" variant="danger" /> 
+    </div> : <AuthProvider>
       <BrowserRouter>
        <Switch>
          <Route exact path="/">
@@ -56,13 +70,9 @@ function App() {
          <Route exact path="/login">
            <Account />
          </Route>
-         <Route exact path="/signup">
-           <Account />
-         </Route>
        </Switch>
       </BrowserRouter>
-      </AuthProvider>
-
+      </AuthProvider>}
     </div>
   );
 }

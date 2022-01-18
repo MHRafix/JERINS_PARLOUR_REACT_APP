@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Alert, Card, CardImg, Col, Row, Spinner } from 'react-bootstrap';
 import Pannel021 from '../../Pannel021';
-import { useForm } from "react-hook-form";
 import usePost from '../../../../CustomHooks/usePost';
 
 const AddService = () => {
+    
+    // Take some statem for storing data to the state
+    const [ serviceName, setServiceName ] = useState('');
+    const [ serviceIcon, setServiceIcon ] = useState('');
+    const [ servicePrice, setServicePrice ] = useState('');
+    const [ serviceDescription, setServiceDescription ] = useState('');
+    
+    // Create service data fro posting
+    const serviceData = {
+          "name": serviceName,
+          "serviceIcon": serviceIcon,
+          "price": servicePrice,
+          "description": serviceDescription
+    };
 
-    // Use react hook form for book service
-    const { register, handleSubmit, reset } = useForm();
     // Post the booking service data using reuseable function 
-    const [ isSend, open, setOpen, onSubmit ] = usePost("services", reset);
-
+    const { isSend, open, setOpen, handlePost } = usePost();
 
     // Put the banner url into a varible for better perfomance 
     const bannerImg = "https://images.theconversation.com/files/311513/original/file-20200123-162185-mw1cww.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=675.0&fit=crop";
@@ -39,14 +49,12 @@ const AddService = () => {
                Service Successfully Added!
              </Alert>}
                       <h3 className="heading text-center fw-700">Give <span className="highLightPart">Service Info</span></h3>
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <form onSubmit={() => handlePost(serviceData, "services")}>
                         {/* User or customer info save to the db */}
-                        <input type="text" id="inputFiled" {...register("name", { required: true })} placeholder="Enter service name" />
-                        <input type="text" id="inputFiled" {...register("serviceIcon", { required: true })} placeholder="Enter service Icon url" /> 
-                        <input type="text" id="inputFiled" {...register("price", { required: true })} placeholder="Enter service price" /> <br />
-                        <textarea type="text" id="inputFiled" {...register("description", { required: true })} placeholder="Enter service description" /> <br />
-
-
+                        <input type="text" id="inputFiled" onChange={e => setServiceName(e.target.value)} placeholder="Enter service name" required/>
+                        <input type="text" id="inputFiled" onChange={e => setServiceIcon(e.target.value)} placeholder="Enter service Icon url" required/> 
+                        <input type="text" id="inputFiled" onChange={e => setServicePrice(e.target.value)} placeholder="Enter service price" required/> <br />
+                        <textarea type="text" id="inputFiled" onChange={e => setServiceDescription(e.target.value)} placeholder="Enter service description" required/> <br />
                         {/* Submit Button   */}
                         <input id="inputFiled" className="specialBtn text-white" type="submit" value="Add Service" />
                     </form>

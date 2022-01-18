@@ -10,19 +10,19 @@ const usePost = () => {
     const [open, setOpen] = useState(false);
 
   const handlePost = (data, url) => {
+    console.log(data, url);
     setIsSend(true);
     axios.post(`https://still-sierra-49002.herokuapp.com/${url}`, data)
     .then(res => {
       if(res.data.insertedId){
         setIsSend(false);
         setOpen(true);
-        
        }
     })
 
 };
 
-    return [ isSend, open, setOpen, handlePost ];
+    return { isSend, open, setOpen, handlePost };
 };
 
 export default usePost;

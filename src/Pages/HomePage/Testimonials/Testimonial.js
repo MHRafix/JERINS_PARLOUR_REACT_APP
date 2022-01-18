@@ -6,7 +6,7 @@ import Carousel from 'react-elastic-carousel';
 
 const Testimonial = () => {
     // Get all feedback from the mongodb database
-    const [ loading, datas ] = useDataFetching("userfeedBack");
+    const { loading, datas }  = useDataFetching("userfeedBack");
 
             // Carousel breakpoints
             const breakpoints = [

@@ -1,32 +1,32 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, {useEffect, useState} from 'react';
+import { Spinner } from 'react-bootstrap';
 import useAuth from '../../../CustomHooks/useAuth';
 
-const CheckoutForm = ({watch}) => {
+const CheckoutForm = ({payableAmount}) => {
   
   const [ error, setError ] = useState();
   const [ proccesing, setProccesing ] = useState(false);
   const [ success, setSuccess ] = useState();
   const [ clientSecret, setClientSecret ] = useState('');
-  const {salePrice} = watch;
 
   const { user } = useAuth();
-
+  
   useEffect( () => {
-      fetch('http://localhost:5000/create-payment-intent', {
+      fetch('https://still-sierra-49002.herokuapp.com/create-payment-intent', {
 
         method: 'POST',
         headers: { 
           'content-type': 'application/json'
         },
 
-        body: JSON.stringify({salePrice})
+        body: JSON.stringify({payableAmount})
         
       })
       .then(res => res.json())
       .then(data => setClientSecret(data.clientSecret));
 
-  }, [salePrice]);
+  }, [payableAmount]);
 
     // use stripe and elements
     const stripe = useStripe();
@@ -57,13 +57,13 @@ const CheckoutForm = ({watch}) => {
         });
 
         if(error){
+          setProccesing(false);
           setError(error.message);
           setSuccess('');
 
         }else{
           setError('');
-          console.log(paymentMethod);
-
+          
         }
 
     // Paymey intent
@@ -89,23 +89,23 @@ const CheckoutForm = ({watch}) => {
       setProccesing(false);
 
       // Save to database
-      const payment = {
-            amount: paymentIntent.amount,
-            created: paymentIntent.created,
-            last4: paymentMethod.card.last4,
-            transaction : paymentIntent.client_secret.slice('_secret')[0]
-      }
-      const url = `http://localhost:5000/orders`;
-      fetch(url, {
-        method: 'PUT',
-        headers: {
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify(payment)
-      })
+      // const payment = {
+            // amount: paymentIntent.amount,
+            // created: paymentIntent.created,
+            // last4: paymentMethod.card.last4,
+            // transaction : paymentIntent.client_secret.slice('_secret')[0]
+      // }
+      // const url = `https://still-sierra-49002.herokuapp.com/orders`;
+      // fetch(url, {
+      //   method: 'PUT',
+      //   headers: {
+      //     'content-type': 'application/json'
+      //   },
+      //   body: JSON.stringify(payment)
+      // })
 
-      .then(res => res.json())
-      .then(data => console.log(data));
+      // .then(res => res.json())
+      // .then(data => console.log(data));
       
     }
     }
@@ -114,8 +114,8 @@ const CheckoutForm = ({watch}) => {
 
     return (
       <form onSubmit={handleSubmit}>
-      {error && <p>{error}</p> }
-      {success && <p>{success}</p> }
+      {error && <p className='text-danger'>{error}</p> }
+      {success && <p className='text-success'>{success}</p> }
       <CardElement className="cardElement"
         options={{
           style: {
@@ -132,9 +132,9 @@ const CheckoutForm = ({watch}) => {
           },
         }}
       /> <br />
-      <button className="specialBtn" type="submit" disabled={!stripe}>
-        Pay Now
-      </button>
+      {proccesing ? <button className="specialBtn"><Spinner animation="border" variant="danger" /></button>:<button className="specialBtn" type="submit" disabled={!stripe}>
+        Pay Now ${payableAmount}
+      </button>}
     </form>
     );
 };

@@ -8,15 +8,15 @@ const SingleTetimonial = ({feedback}) => {
       console.log(feedback);
         // Let's destructuring the single service data from the object
         const { userName, userPhoto, ratting, review } = feedback;
- 
-            // AOS animation
-            useEffect(() => {
-                AOS.init({
-                    offset: 100,
-                    duration: 1300,
-                    easing: 'ease',
-                });
+
+        // AOS animation
+        useEffect(() => {
+            AOS.init({
+                offset: 100,
+                duration: 1300,
+                easing: 'ease',
             });
+        });
 
 
     return (

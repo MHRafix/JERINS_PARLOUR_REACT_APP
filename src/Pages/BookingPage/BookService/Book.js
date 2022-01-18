@@ -20,7 +20,7 @@ const Book = () => {
     
 
     // Find out the selected package here 
-    const [ loading, datas ] = useDataFetching("services");
+    const { datas } = useDataFetching("services");
     
     let selectedService;
 
@@ -32,7 +32,7 @@ const Book = () => {
     }
 
     // Post the booking service data using reuseable function 
-    const [ isSend, open, setOpen, handlePost ] = usePost();
+    const { isSend, open, setOpen, handlePost } = usePost();
 
     const handleClose = () => {
       setOpen(false);
@@ -49,12 +49,7 @@ const Book = () => {
       appointMentTime: comingTime,
       status: "Pendding",
       paymentStatus: false
-
-
     }
-
-
-
 
     // Put the banner url into a varible for better perfomance 
     const bannerImg = "https://i.ibb.co/LrVtdwd/1-Best-Salon-Apps-for-Salon-Booking-Online-banner.jpg";

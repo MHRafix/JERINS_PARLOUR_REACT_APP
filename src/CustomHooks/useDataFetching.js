@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useDataFetching = (dataStorePlace) => {
+const useDataFetching = (url) => {
 
     // Take a loading state for showing loading gif whilr data is loading
     const [ loading, setLoading ] = useState(false);
@@ -11,7 +11,7 @@ const useDataFetching = (dataStorePlace) => {
     // Use useEffect for loading data from the node server
     useEffect( () => {
         setLoading(true);
-        fetch(`https://still-sierra-49002.herokuapp.com/${dataStorePlace}`)
+        fetch(`https://still-sierra-49002.herokuapp.com/${url}`)
         .then(res => res.json())
         .then(data => {
             setDatas(data);
@@ -20,7 +20,7 @@ const useDataFetching = (dataStorePlace) => {
         
     }, []);
 
-    return [ loading, datas, setDatas ];
+    return { loading, datas, setDatas };
 };
 
 export default useDataFetching;
