@@ -1,10 +1,12 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, {useEffect, useState} from 'react';
 import { Spinner } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import useAuth from '../../../CustomHooks/useAuth';
 
-const CheckoutForm = ({payableAmount}) => {
+const CheckoutForm = ({payableAmount, serviceID}) => {
   
+  const history = useHistory();
   const [ error, setError ] = useState();
   const [ proccesing, setProccesing ] = useState(false);
   const [ success, setSuccess ] = useState();
@@ -89,23 +91,33 @@ const CheckoutForm = ({payableAmount}) => {
       setProccesing(false);
 
       // Save to database
-      // const payment = {
-            // amount: paymentIntent.amount,
-            // created: paymentIntent.created,
-            // last4: paymentMethod.card.last4,
-            // transaction : paymentIntent.client_secret.slice('_secret')[0]
-      // }
-      // const url = `https://still-sierra-49002.herokuapp.com/orders`;
-      // fetch(url, {
-      //   method: 'PUT',
-      //   headers: {
-      //     'content-type': 'application/json'
-      //   },
-      //   body: JSON.stringify(payment)
-      // })
+      const payment = {
+            amount: paymentIntent.amount,
+            created: paymentIntent.created,
+            last4: paymentMethod.card.last4,
+            transaction : paymentIntent.client_secret.slice('_secret')[0]
+      }
+      const url = `https://still-sierra-49002.herokuapp.com/bookedServices/${user.email}/${serviceID}`;
+      fetch(url, {
+        method: 'PUT',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(payment)
+      })
 
-      // .then(res => res.json())
-      // .then(data => console.log(data));
+      .then(res => res.json())
+      .then(data => {
+        // Nothing here
+      });
+
+    // Declare a timeOut function
+    const timeOut = () => {
+      history.push('/services');
+    }
+
+    // Initialize timeOut function here
+    setTimeout(timeOut, 3000);
       
     }
     }
@@ -132,8 +144,8 @@ const CheckoutForm = ({payableAmount}) => {
           },
         }}
       /> <br />
-      {proccesing ? <button className="specialBtn"><Spinner animation="border" variant="danger" /></button>:<button className="specialBtn" type="submit" disabled={!stripe}>
-        Pay Now ${payableAmount}
+      {proccesing ? <button className="specialBtn"><Spinner animation="border" variant="danger" /></button>:<button className="specialBtn" type="submit" disabled={!stripe || success}>
+        Pay Now
       </button>}
     </form>
     );

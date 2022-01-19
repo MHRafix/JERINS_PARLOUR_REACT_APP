@@ -24,7 +24,7 @@ const SingleBooking = ({data, handleDelete}) => {
             <div className="columData"><span className="columnName">{ customerName }</span></div>
             <div className="columData"><span className="columnName">{ customerPhoneNumber }</span></div>
             <div className="columData"><span className="columnName">{ serviceName }</span></div>
-            <div className="columData"><span className="columnName">{ paymentStatus === true ? <span className="columnName status">PAID</span> : <span className="columnName status">UNPAID</span> }</span></div>
+            <div className="columData"><span className="columnName">{ paymentStatus === true ? <span className="columnName paidStatus">PAID</span> : <span className="columnName status">UNPAID</span> }</span></div>
             <div className="columData"><span className="columnNameAction"><span onClick={ () => handleDelete(_id) } className="fas fa-trash actionIconDel"></span></span></div>
         </div>
         <hr style={{color:"crimson"}}/>

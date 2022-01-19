@@ -15,6 +15,7 @@ import MyServices from './Pages/UserDashboard/MyServices/MyServices';
 import Payment from './Pages/UserDashboard/Payment/Payment';
 import { Spinner } from 'react-bootstrap';
 import { useState } from 'react';
+import AboutUs from './Pages/AboutUsPage/AboutUs';
 
 function App() {
 
@@ -60,6 +61,9 @@ function App() {
          </Route>
          <Route exact path="/Admin_Pannel&&021/Pannel&&021/allServices">
            <AllServices />
+         </Route>
+         <Route exact path="/about">
+           <AboutUs />
          </Route>
          <PrivateRoute exact path="/MyBookedServices">
            <MyServices />

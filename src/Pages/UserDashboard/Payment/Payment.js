@@ -6,9 +6,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from './CheckoutForm';
 
 const stripePromise = loadStripe('pk_test_51Jy986Fp0BiFtInNOEHC9OKJqS8ZxsvPVSpODrGL7ipWsSSii2mFo8LlY3BQC0bkzWqnZNW1x0lgIGxSYIiiwtgJ00Hshw7nKQ');
-
-
-const Payment = ({amount}) => {
+const Payment = ({amount, serviceID}) => {
         // Take history for changing the route of the app
         const history = useHistory();
         
@@ -26,7 +24,7 @@ const Payment = ({amount}) => {
             <div className="container">
 
             <Elements stripe={stripePromise}>
-               <CheckoutForm payableAmount={amount} />
+               <CheckoutForm payableAmount={amount} serviceID={serviceID} />
             </Elements>
 
         </div>
